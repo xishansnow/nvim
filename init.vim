@@ -41,7 +41,7 @@ Plug 'psliwka/vim-smoothie'                                     " 平滑滚动�
 "Plug 'wellle/tmux-complete.vim'                                 " 利用tmux 面板内容自动补全单词 complete words from a tmux panes
 "Plug 'tpope/vim-eunuch'                                         " 在vim 中运行常用系统命令（删除、移动、重命名、搜索等） run common Unix commands inside Vim
 Plug 'machakann/vim-sandwich'                                   " 支持更多文本对象及操作 make sandwiches
-"Plug 'christoomey/vim-tmux-navigator'                           " vim 和 tmux 之间无缝导航 seamless vim and tmux navigation
+Plug 'christoomey/vim-tmux-navigator'                           " vim 和 tmux 之间无缝导航 seamless vim and tmux navigation
 Plug 'stephpy/vim-yaml'                                         " YAML 语法支持
 Plug 'plasticboy/vim-markdown'                                  " Markdown 语法支持
 Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && yarn install'  }        " Markdown 文件预览支持
@@ -127,7 +127,7 @@ hi CocCursorRange guibg=#b16286 guifg=#ebdbb2
 " ======================== 插件设置  Plugin Configurations ======================== "{{{
 
 "" ------------    内部插件 built in plugins
-let loaded_netrw = 0                                    " diable netew
+let loaded_netrwPlugin = 1                                    " diable netew
 let g:omni_sql_no_default_maps = 1                      " disable sql omni completion
 let g:loaded_python_provider = 0
 let g:loaded_perl_provider = 0
@@ -490,6 +490,9 @@ noremap <leader>e :PlugInstall<CR>
 
 " Markdown 文件预览
 au FileType markdown nmap <leader>m :MarkdownPreview<CR>
+
+" 切换终端窗口
+
 
 " ======================== 状态栏设置 =============================================== "{{{
 source ~/.config/nvim/statusline.vim
