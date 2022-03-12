@@ -1,3 +1,6 @@
+" source:
+" https://github.com/Blacksuan19/init.nvim:noh
+
 " ============= Vim-Plug ============== "{{{
 
 " auto-install vim-plug
@@ -7,74 +10,82 @@ if empty(glob('~/.config/nvim/autoload/plug.vim'))
   autocmd VimEnter * PlugInstall | source $MYVIMRC
 endif
 
+
+" =============================  插件加载设置  =====================================================
 call plug#begin(expand('~/.config/nvim/plugged'))
 
 "}}}
 
-" ================= looks and GUI stuff ================== "{{{
+" ================= 外观类插件 ================== "{{{
 
-Plug 'ryanoasis/vim-devicons'                           " pretty icons everywhere
-Plug 'luochen1990/rainbow'                              " rainbow parenthesis
-Plug 'hzchirs/vim-material'                             " material color themes
-Plug 'gregsexton/MatchTag'                              " highlight matching html tags
-Plug 'Jorengarenar/vim-MvVis'                           " move visual selection
+Plug 'ryanoasis/vim-devicons'                           " 漂亮的图标 pretty icons everywhere
+Plug 'luochen1990/rainbow'                              " 彩虹配对 rainbow parenthesis
+Plug 'hzchirs/vim-material'                             " 颜色主题  material color themes
+Plug 'gregsexton/MatchTag'                              " HTML 标签高亮现实 highlight matching html tags
+Plug 'Jorengarenar/vim-MvVis'                           " 文本块移动 move visual selection
 "}}}
 
-" ================= Functionalities ================= "{{{
+" ================= 功能类插件================= "{{{
 
-Plug 'neoclide/coc.nvim', {'branch': 'release'}         " LSP and more
-Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }     " fzf itself
-Plug 'junegunn/fzf.vim'                                 " fuzzy search integration
-Plug 'honza/vim-snippets'                               " actual snippets
-Plug 'Yggdroot/indentLine'                              " show indentation lines
-Plug 'numirias/semshi', {'do': ':UpdateRemotePlugins'}  " better python
-Plug 'tpope/vim-commentary'                             " better commenting
-Plug 'mhinz/vim-startify'                               " cool start up screen
-Plug 'tpope/vim-fugitive'                               " git support
-Plug 'psliwka/vim-smoothie'                             " some very smooth ass scrolling
-Plug 'wellle/tmux-complete.vim'                         " complete words from a tmux panes
-Plug 'tpope/vim-eunuch'                                 " run common Unix commands inside Vim
-Plug 'machakann/vim-sandwich'                           " make sandwiches
-Plug 'christoomey/vim-tmux-navigator'                   " seamless vim and tmux navigation
-Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && yarn install'  }
+Plug 'neoclide/coc.nvim', {'branch': 'release'}                 " 语法支持 LSP and more
+Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}     " 语法高亮显示
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }             " fzf 安装 fzf itself
+Plug 'junegunn/fzf.vim'                                         " fzf 模糊查询集成 fuzzy search integration
+Plug 'honza/vim-snippets'                                       " snippets 支持 actual snippets
+Plug 'Yggdroot/indentLine'                                      " 显示缩进线 show indentation lines
+Plug 'numirias/semshi', {'do': ':UpdateRemotePlugins'}          " PYTHON 语法支持 better python
+Plug 'tpope/vim-commentary'                                     " 漂亮的注释 better commenting
+Plug 'mhinz/vim-startify'                                       " 启动画面 cool start up screen
+Plug 'tpope/vim-fugitive'                                       " GIT 支持 git support
+Plug 'psliwka/vim-smoothie'                                     " 平滑滚动支持 some very smooth ass scrolling
+"Plug 'wellle/tmux-complete.vim'                                 " 利用tmux 面板内容自动补全单词 complete words from a tmux panes
+"Plug 'tpope/vim-eunuch'                                         " 在vim 中运行常用系统命令（删除、移动、重命名、搜索等） run common Unix commands inside Vim
+Plug 'machakann/vim-sandwich'                                   " 支持更多文本对象及操作 make sandwiches
+"Plug 'christoomey/vim-tmux-navigator'                           " vim 和 tmux 之间无缝导航 seamless vim and tmux navigation
+Plug 'stephpy/vim-yaml'                                         " YAML 语法支持
+Plug 'plasticboy/vim-markdown'                                  " Markdown 语法支持
+Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && yarn install'  }        " Markdown 文件预览支持
+Plug 'preservim/nerdtree'                                       " NerdTree 目录树支持
+Plug 'simnalamburt/vim-mundo'                                   " undo 缓冲区可视化
+Plug 'kassio/neoterm'                                        " 内置终端
 call plug#end()
 
 "}}}
 
-" ==================== general config ======================== "{{{
+" ==================== VIM 通用设置 general config ======================== "{{{
 
-set termguicolors                                       " Opaque Background
-set mouse=a                                             " enable mouse scrolling
-set clipboard+=unnamedplus                              " use system clipboard by default
-set tabstop=4 softtabstop=4 shiftwidth=4 autoindent     " tab width
-set expandtab smarttab                                  " tab key actions
-set incsearch ignorecase smartcase hlsearch             " highlight text while searching
-set list listchars=trail:»,tab:»-                       " use tab to navigate in list mode
+set termguicolors                                       " 透明背景 Opaque Background
+set mouse=a                                             " 支持鼠标滚轮 enable mouse scrolling
+set clipboard+=unnamedplus                              " 使用系统剪切板 use system clipboard by default
+set tabstop=4 softtabstop=4 shiftwidth=4 autoindent     " 制表符宽度设置 tab width
+set expandtab smarttab                                  " TAB 键的行为 tab key actions
+set incsearch ignorecase smartcase hlsearch             " 搜索时高亮显示 highlight text while searching
+set list listchars=trail:»,tab:»-                       " 在列表模式下，使用 TAB 键浏览 use tab to navigate in list mode
 set fillchars+=vert:\▏                                  " requires a patched nerd font (try FiraCode)
-set wrap breakindent                                    " wrap long lines to the width set by tw
+set wrap breakindent                                    " 启动自动换行显示 wrap long lines to the width set by tw
 set encoding=utf-8                                      " text encoding
-set number                                              " enable numbers on the left
-set relativenumber                                      " current line is 0
-set title                                               " tab title as file name
-set noshowmode                                          " dont show current mode below statusline
-set noshowcmd                                           " to get rid of display of last command
+set number                                              " 显示行号 enable numbers on the left
+set relativenumber                                      " 相对行号 current line is 0
+set title                                               " 标签页标题显示文件名 tab title as file name
+set noshowmode                                          " 关闭当前模式提醒 dont show current mode below statusline
+set noshowcmd                                           " 关闭最后一条命令提醒 to get rid of display of last command
 set conceallevel=2                                      " set this so we wont break indentation plugin
-set splitright                                          " open vertical split to the right
-set splitbelow                                          " open horizontal split to the bottom
-set tw=90                                               " auto wrap lines that are longer than that
-set emoji                                               " enable emojis
-set history=1000                                        " history limit
+set splitright                                          " 默认在右侧垂直分割 open vertical split to the right
+set splitbelow                                          " 默认在底部水平分割 open horizontal split to the bottom
+set tw=90                                               " 90 个字符自动换行设置 auto wrap lines that are longer than that
+set emoji                                               " 支持表情 enable emojis
+set history=1000                                        " 最大历史记录 history limit
 set backspace=indent,eol,start                          " sensible backspacing
-set undofile                                            " enable persistent undo
-set undodir=/tmp                                        " undo temp file directory
+set undofile                                            " 支持 undo 历史永久存储 enable persistent undo
+set undodir=/tmp                                        " undo 历史永久存储位置 undo temp file directory
 set foldlevel=0                                         " open all folds by default
 set inccommand=nosplit                                  " visual feedback while substituting
-set showtabline=0                                       " always show tabline
-set grepprg=rg\ --vimgrep                               " use rg as default grepper
+set showtabline=0                                       " 总是现实 tabline always show tabline
+set grepprg=rg\ --vimgrep                               " 使用 rg 作为默认检索工具 se rg as default grepper
 
 " performance tweaks
-set nocursorline
-set nocursorcolumn
+set cursorline                                          " 是否行高亮显示，否用 nocursorline
+set cursorcolumn                                        " 是否列高亮显示，否用 nocursorcolumn
 set scrolljump=5
 set lazyredraw
 set redrawtime=10000
@@ -89,6 +100,7 @@ set cmdheight=1
 set updatetime=300
 set shortmess+=c
 set signcolumn=yes
+
 
 " Themeing
 let g:material_style = 'oceanic'
@@ -111,9 +123,10 @@ hi CocCursorRange guibg=#b16286 guifg=#ebdbb2
 
 "}}}
 
-" ======================== Plugin Configurations ======================== "{{{
 
-"" built in plugins
+" ======================== 插件设置  Plugin Configurations ======================== "{{{
+
+"" ------------    内部插件 built in plugins
 let loaded_netrw = 0                                    " diable netew
 let g:omni_sql_no_default_maps = 1                      " disable sql omni completion
 let g:loaded_python_provider = 0
@@ -125,7 +138,7 @@ else
   let g:python3_host_prog = systemlist('which python3')[0]
 endif
 
-"" coc
+""------------     coc 语言支持插件
 
 " Navigate snippet placeholders using tab
 let g:coc_snippet_next = '<Tab>'
@@ -153,13 +166,13 @@ let g:coc_global_extensions = [
             \'coc-sh',
             \]
 
-" indentLine
+""------------     缩进线插件 indentLine
 let g:indentLine_char_list = ['▏', '¦', '┆', '┊']
 let g:indentLine_setColors = 0
 let g:indentLine_setConceal = 0                         " actually fix the annoying markdown links conversion
 let g:indentLine_fileTypeExclude = ['startify']
 
-"" startify
+""------------     启动画面插件 startify
 let g:startify_padding_left = 10
 let g:startify_session_persistence = 1
 let g:startify_enable_special = 0
@@ -172,13 +185,13 @@ let g:startify_lists = [
     \ { 'type': 'commands' },
     \ ]
 
-" bookmark examples
+" 常用书签 bookmark examples
 let  g:startify_bookmarks =  [
     \ {'v': '~/.config/nvim'},
     \ {'d': '~/.dotfiles' }
     \ ]
 
-" custom commands
+" 自定义命令 custom commands
 let g:startify_commands = [
     \ {'ch':  ['Health Check', ':checkhealth']},
     \ {'ps': ['Plugins status', ':PlugStatus']},
@@ -187,8 +200,9 @@ let g:startify_commands = [
     \ {'h':  ['Help', ':help']},
     \ ]
 
-" custom banner
-let g:startify_custom_header = [
+" 自定义 BANNER  custom banner
+
+let startify_custom_header = [
  \ '',
  \ '                                                    ▟▙            ',
  \ '                                                    ▝▘            ',
@@ -202,16 +216,17 @@ let g:startify_custom_header = [
  \ '',
  \]
 
-" rainbow brackets
+" ------------  彩虹插件设置  rainbow brackets
 let g:rainbow_active = 1
 
-" tmux navigator
-let g:tmux_navigator_no_mappings = 1
+" ------------    tmux navigator
+" let g:tmux_navigator_no_nappings = 1
 
-" semshi settings
+"" ------------ Semshi 插件设置 semshi settings
+
 let g:semshi#error_sign	= v:false                       " let ms python lsp handle this
 
-"" FZF
+""------------ FZF 插件设置
 let g:fzf_action = {
   \ 'ctrl-t': 'tab split',
   \ 'ctrl-x': 'split',
@@ -223,9 +238,12 @@ let g:fzf_tags_command = 'ctags -R'
 let $FZF_DEFAULT_OPTS = '--layout=reverse --inline-info'
 let $FZF_DEFAULT_COMMAND = "rg --files --hidden --glob '!.git/**' --glob '!build/**' --glob '!.dart_tool/**' --glob '!.idea' --glob '!node_modules'"
 
+
+"" --------------- 内置终端插件
+
 "}}}
 
-" ======================== Commands ============================= "{{{
+" ======================== 自定义命令 Commands ============================= "{{{
 
 au BufEnter * set fo-=c fo-=r fo-=o                     " stop annoying auto commenting on new lines
 au FileType help wincmd L                               " open help in vertical split
@@ -285,7 +303,7 @@ command! -nargs=* -bang Rg call RipgrepFzf(<q-args>, <bang>0)
 
 "}}}
 
-" ================== Custom Functions ===================== "{{{
+" ================== 自定义函数 Custom Functions ===================== "{{{
 
 " advanced grep(faster with preview)
 function! RipgrepFzf(query, fullscreen)
@@ -318,38 +336,42 @@ endfunction
 
 "}}}
 
-" ======================== Custom Mappings ====================== "{{{
+" ======================== 自定义快捷键 Custom Mappings ====================== "{{{
 
-"" the essentials
+"" =======================  基础快捷键设置 =======================================================
+
+"leader 键设置，默认为 ,
 let mapleader=","
-nnoremap ; :
-nmap \ <leader>q
-map <F6> :Startify <CR>
-nmap <leader>r :so ~/.config/nvim/init.vim<CR>
-nmap <leader>q :bd<CR>
-nmap <leader>w :w<CR>
-map <leader>s :Format<CR>
+
+" 正常模式下，将<;> 键映射到 <:>
+" nnoremap ; :
+
+" 正常模式下，<Tab> 键的定义
 nmap <Tab> :bnext<CR>
 nmap <S-Tab> :bprevious<CR>
-noremap <leader>e :PlugInstall<CR>
-noremap <C-q> :q<CR>
 
-" new line in normal mode and back
+" 正常模式下， <Enter> 键的定义
 map <Enter> o<ESC>
 map <S-Enter> O<ESC>
 
-" use a different register for delete and paste
-nnoremap d "_d
-vnoremap d "_d
-vnoremap p "_dP
-nnoremap x "_x
+" 正常模式下的<退出> 快捷键
+noremap <C-q> :q<CR>
 
-" emulate windows copy, cut behavior
+"  ===================  普通模式下，回车键行为为添加新行 =========================================
+" =================   普通和可视模式下，删除和粘贴使用的寄存器 ===================================
+"nnoremap d "_d
+"vnoremap d "_d
+"vnoremap p "_dP
+"nnoremap x "_x
+
+" ============================ 可视模式下模拟 Windows 的 copy, cut ==============================
 vnoremap <LeftRelease> "+y<LeftRelease>
 vnoremap <C-c> "+y<CR>
 vnoremap <C-x> "+d<CR>
 
-" switch between splits using ctrl + {h,j,k,l}
+
+" ============================ 普通和编辑模式下，使用 ctrl + {h,j,k,l} 进行窗口切换 =============
+
 inoremap <C-h> <C-\><C-N><C-w>h
 inoremap <C-j> <C-\><C-N><C-w>j
 inoremap <C-k> <C-\><C-N><C-w>k
@@ -362,13 +384,9 @@ nnoremap <C-l> <C-w>l
 " disable hl with 2 esc
 noremap <silent><esc> <esc>:noh<CR><esc>
 
-" trim white spaces
-nnoremap <F2> :let _s=@/<Bar>:%s/\s\+$//e<Bar>:let @/=_s<Bar><CR>
 
-" markdown preview
-au FileType markdown nmap <leader>m :MarkdownPreview<CR>
+""  ===========  FZF 搜索窗口快捷键 =================================================================
 
-"" FZF
 nnoremap <silent> <leader>f :Files<CR>
 nmap <leader>b :Buffers<CR>
 nmap <leader>c :Commands<CR>
@@ -378,12 +396,31 @@ nmap <leader>gc :Commits<CR>
 nmap <leader>gs :GFiles?<CR>
 nmap <leader>sh :History/<CR>
 
-" show mapping on all modes with F1
+
+
+"====================  <Fn> Button Configuations ===============================================
+
+" <F1> -- 在任何模式下，打开快捷键查询窗口
 nmap <F1> <plug>(fzf-maps-n)
 imap <F1> <plug>(fzf-maps-i)
 vmap <F1> <plug>(fzf-maps-x)
 
-"" coc
+" trim white spaces
+"nnoremap <F2> : let _s=@/<Bar>:%s/\s\+$//e<Bar>:let @/=_s<Bar><CR>
+
+" <F2> -- 打开 undo 缓冲区历史窗口
+nnoremap <F2> :MundoToggle<CR>
+
+" <F3> --  打开 NERDTree 窗口
+nnoremap <F3> :NERDTreeToggle<CR>
+
+
+nnoremap <F4> :MundoToggle<CR>
+nnoremap <F5> :MundoToggle<CR>
+nnoremap <F6> :Startify<CR>
+
+
+"" =================== COC Shortcuts ============================================================
 
 " use tab to navigate snippet placeholders
 inoremap <silent><expr> <TAB>
@@ -396,8 +433,8 @@ inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
 inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<CR>"
 
 " multi cursor shortcuts
-nmap <silent> <C-a> <Plug>(coc-cursors-word)
-xmap <silent> <C-a> <Plug>(coc-cursors-range)
+"nmap <silent> <C-a> <Plug>(coc-cursors-word)
+"xmap <silent> <C-a> <Plug>(coc-cursors-range)
 
 " Use `[g` and `]g` to navigate diagnostics
 nmap <silent> [g <Plug>(coc-diagnostic-prev)
@@ -418,11 +455,14 @@ nnoremap <silent> K :call <SID>show_documentation()<CR>
 nmap <leader>a <Plug>(coc-codeaction-line)
 xmap <leader>a <Plug>(coc-codeaction-selected)
 
-" fugitive mappings
+
+" =========== GIT Shortcuts (fugitive mappings ) ==================================================
+
 nmap <leader>gd :Gdiffsplit<CR>
 nmap <leader>gb :Git blame<CR>
 
-" tmux navigator
+" =========== TMUX Shortcuts( tmux navigator ) ====================================================
+
 nnoremap <silent> <C-h> :TmuxNavigateLeft<cr>
 nnoremap <silent> <C-l> :TmuxNavigateRight<cr>
 nnoremap <silent> <C-j> :TmuxNavigateDown<cr>
@@ -430,8 +470,28 @@ nnoremap <silent> <C-k> :TmuxNavigateUp<cr>
 
 "}}}
 
+" ================   其他的 <Leader> 快捷键 =============================================================
+"
+nmap <leader>q :bd<CR>
+nmap \ <leader>q
 
-" ======================== Additional sourcing ====================== "{{{
+" 重新加载  init.vim 配置
+nmap <leader>r :so ~/.config/nvim/init.vim<CR>  "reload init.vim
+
+" 写文件
+nmap <leader>w :w<CR>
+
+" 格式化文件
+map <leader>s :Format<CR>
+
+" 安装插件
+noremap <leader>e :PlugInstall<CR>
+
+
+" Markdown 文件预览
+au FileType markdown nmap <leader>m :MarkdownPreview<CR>
+
+" ======================== 状态栏设置 =============================================== "{{{
 source ~/.config/nvim/statusline.vim
 
 "}}}
