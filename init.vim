@@ -46,8 +46,10 @@ Plug 'stephpy/vim-yaml'                                         " YAML 语法支
 Plug 'plasticboy/vim-markdown'                                  " Markdown 语法支持
 Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && yarn install'  }        " Markdown 文件预览支持
 Plug 'preservim/nerdtree'                                       " NerdTree 目录树支持
+Plug 'ms-jpq/chadtree', {'branch': 'chad', 'do': 'python3 -m chadtree deps'}     " ChadTree 目录树支持
 Plug 'simnalamburt/vim-mundo'                                   " undo 缓冲区可视化
-Plug 'kassio/neoterm'                                        " 内置终端
+Plug 'skywind3000/vim-terminal-help'
+
 call plug#end()
 
 "}}}
@@ -409,10 +411,15 @@ vmap <F1> <plug>(fzf-maps-x)
 "nnoremap <F2> : let _s=@/<Bar>:%s/\s\+$//e<Bar>:let @/=_s<Bar><CR>
 
 " <F2> -- 打开 undo 缓冲区历史窗口
+
 nnoremap <F2> :MundoToggle<CR>
 
-" <F3> --  打开 NERDTree 窗口
-nnoremap <F3> :NERDTreeToggle<CR>
+" <F3> --  打开 CHADTree 窗口
+nnoremap <F3> :CHADopen<CR>
+
+" <F4> -- 打开终端
+
+let g:terminal_key <F4>
 
 
 nnoremap <F4> :MundoToggle<CR>
@@ -487,6 +494,7 @@ map <leader>s :Format<CR>
 " 安装插件
 noremap <leader>e :PlugInstall<CR>
 
+nnoremap <leader>v :CHADopen<CR>
 
 " Markdown 文件预览
 au FileType markdown nmap <leader>m :MarkdownPreview<CR>
