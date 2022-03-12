@@ -1,4 +1,5 @@
 *autoload/
+*pack/
 *plugged/
-spell/*
+*plugin/
 .netrwhist
