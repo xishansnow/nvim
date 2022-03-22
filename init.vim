@@ -38,7 +38,7 @@ Plug 'tpope/vim-commentary'                                     " 漂亮的注�
 Plug 'mhinz/vim-startify'                                       " 启动画面 cool start up screen
 Plug 'tpope/vim-fugitive'                                       " GIT 支持 git support
 Plug 'psliwka/vim-smoothie'                                     " 平滑滚动支持 some very smooth ass scrolling
-"Plug 'wellle/tmux-complete.vim'                                 " 利用tmux 面板内容自动补全单词 complete words from a tmux panes
+"Plug 'wellle/tmux-complete.vim'                                 " 利用tmux 面板内容自动补全单词 completPlpjjke words from a tmux panes
 "Plug 'tpope/vim-eunuch'                                         " 在vim 中运行常用系统命令（删除、移动、重命名、搜索等） run common Unix commands inside Vim
 Plug 'machakann/vim-sandwich'                                   " 支持更多文本对象及操作 make sandwiches
 Plug 'christoomey/vim-tmux-navigator'                           " vim 和 tmux 之间无缝导航 seamless vim and tmux navigation
@@ -49,6 +49,8 @@ Plug 'preservim/nerdtree'                                       " NerdTree 目�
 Plug 'ms-jpq/chadtree', {'branch': 'chad', 'do': 'python3 -m chadtree deps'}     " ChadTree 目录树支持
 Plug 'simnalamburt/vim-mundo'                                   " undo 缓冲区可视化
 Plug 'skywind3000/vim-terminal-help'
+"Plug 'nvim-lualine/lualine.nvim'                                " new plugin for statusline
+"Plug 'kyazdani42/nvim-web-devicons'                             " icons used in lualine
 
 call plug#end()
 
@@ -418,8 +420,6 @@ nnoremap <F2> :MundoToggle<CR>
 nnoremap <F3> :CHADopen<CR>
 
 " <F4> -- 打开终端
-
-let g:terminal_key <F4>
 
 
 nnoremap <F4> :MundoToggle<CR>

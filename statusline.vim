@@ -83,6 +83,7 @@ endfunction
 function! FiletypeIcon()
     return winwidth(0) > 70 ? (strlen(&filetype) ? WebDevIconsGetFileTypeSymbol() . ' ' : ' ') : ''
 endfunction
+
 function! SetFiletype(filetype) " {{{
     if winwidth(0) > 70
         hi CustomStatuslineFiletype          cterm=none   gui=none   ctermbg=none ctermfg=5 guibg=none    guifg=#d990cd
@@ -234,4 +235,5 @@ augroup vimrc-statusline
     autocmd WinNew   * setlocal statusline=%!SetActiveStatusLine()
     autocmd WinLeave * setlocal statusline=%!SetActiveStatusLine()
 augroup END
+
 setlocal statusline=%!SetActiveStatusLine()
